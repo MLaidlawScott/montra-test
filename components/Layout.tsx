@@ -6,10 +6,10 @@ type Props = {
 
 const Layout = ({ children }: Props) => {
   return (
-    <>
+    <div className="h-screen w-screen flex flex-col">
       <Navbar />
-      <main>{children}</main>
-    </>
+      <main className="h-full">{children}</main>
+    </div>
   );
 };
 
