@@ -1,36 +1,27 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a tech test for Montra.
 
-## Getting Started
+To run this tech test please clone the repo, run `yarn install`, and then create a `.env.local` file with the same format as the `env.example` file with the details sent to you.
 
-First, run the development server:
+Then you can run the project using `yarn dev`.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+This project assumed a number of things leading to design choices you may not chose to replicate if this was intended for production.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. 1 user was assumed. This means that no auth was added and row level security was not enabled in Supabase. This also meant that localstorage was used when the user updates there profile photo as to implement remotely stored avatars without having users would be a poor design and security choice.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+2. Redux was used to show knowledge of the library. A project this small would not need a global state management package. If one was desired, then something small like [Jotai](https://jotai.org/) would be a better choice.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+3. I wanted to show that I could pick up Supabase easily. I'd like to spend a more time working out how best to integrate it with TypeScript and where to do error handling.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+4. In relation to above, I would use a library like [Zod](https://github.com/colinhacks/zod) to validate responses from Supabase where needed.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+5. I did not include testing due to time constraints. If you'd like to see this I am happy to include some in the future.
 
-## Learn More
+6. If you'd like to see a more 'enterprise' level tech test I have done please look at [this repo](https://github.com/MLaidlawScott/waracle-test). This includes: Nx, Next, Storybook, RTK, RTKQuery, Chakru-UI, Postgres, Cypress, and Prisma.
 
-To learn more about Next.js, take a look at the following resources:
+7. Finally, I did not spend too much time styling the project. Tailwind is something I have recently started picking up and I am condfident I can easily transition my knowledge from traditional css modules to Tailwind. However, I did not think it would be a good use of time in this case.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Summary
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+I spent around 10 hours on this tech test. I implemented Supabase and ThreeJs to meet the requirements having never used these libraries before. I achieved adequate styling using Tailwind, with which I have limited experience. Frequent and appropriately sized commits were used. I am happy to tidy things up or add more if you like.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+<sub><sub>And just because its trendy...ChatGPT was used to generate the summary of Frank Herbert.</sub></sub>

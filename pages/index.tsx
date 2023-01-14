@@ -35,7 +35,7 @@ export default function Home() {
           <>loading!</>
         ) : (
           author && (
-            <Canvas className="h-full bg-red-300">
+            <Canvas className="h-full">
               <AuthorCanvas
                 thumbnailUri={author.thumbnail_uri}
                 description={author.description}

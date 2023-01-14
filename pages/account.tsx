@@ -50,26 +50,26 @@ export default function Account() {
   return (
     <Layout>
       <div className="flex m-12">
-        <div className="flex flex-col flex-1">
+        <div className="flex flex-col flex-1 justify-center items-center gap-4">
+          {capturing ? (
+            <Webcam
+              width={200}
+              height={200}
+              ref={webcamRef}
+              audio={false}
+              screenshotFormat="image/jpeg"
+            />
+          ) : (
+            <Image
+              className="rounded-full aspect-square overflow-hidden"
+              width={200}
+              height={200}
+              alt="profile Thumbnail"
+              crossOrigin="anonymous"
+              src={profileThumbnailUri}
+            />
+          )}
           <div>
-            {capturing ? (
-              <Webcam
-                width={200}
-                height={200}
-                ref={webcamRef}
-                audio={false}
-                screenshotFormat="image/jpeg"
-              />
-            ) : (
-              <Image
-                className="rounded-full aspect-square overflow-hidden"
-                width={200}
-                height={200}
-                alt="profile Thumbnail"
-                crossOrigin="anonymous"
-                src={profileThumbnailUri}
-              />
-            )}
             <Button
               title={capturing ? "Capture" : "Update"}
               onClick={capturing ? capture : () => setCapturing(true)}
