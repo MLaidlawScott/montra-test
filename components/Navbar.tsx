@@ -1,9 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
+import { useEffect } from "react";
 
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { selectProfile, updateThumbnail } from "../store/profileSlice";
-import { useEffect } from "react";
 
 const PROFILE_LOCAL_STORAGE = "profile-image";
 
@@ -20,6 +20,7 @@ const Navbar = () => {
       dispatch(updateThumbnail(localPhoto));
     }
   }, []);
+
   return (
     <div className="border-b-2 flex flex-row justify-between px-4 items-center">
       <nav className="space-x-4 text-2xl flex">

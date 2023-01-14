@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import React, { useRef, useState } from "react";
 import { useFrame, useLoader } from "@react-three/fiber";
-import { OrbitControls, Plane, Text } from "@react-three/drei";
+import { Plane, Text } from "@react-three/drei";
 
 type Props = {
   thumbnailUri: string;
@@ -14,28 +14,35 @@ export const AuthorCanvas = ({ description, thumbnailUri }: Props) => {
   const textRef = useRef<THREE.Mesh>();
   const imageRef = useRef<THREE.Mesh>();
 
-  useFrame((state) => {
-    if (!textRef.current || !imageRef.current) {
-      return null;
+  useFrame(({ mouse }) => {
+    const { y } = mouse;
+
+    const imageY = imageRef.current?.position.y;
+    const textY = textRef.current?.position.y;
+
+    if (imageY === undefined || textY === undefined) {
+      return;
     }
 
-    if (clicked) {
-      console.log("textref", textRef.current.position);
-      console.log("imageRef", imageRef.current.position);
-      setClicked(false);
+    if (y <= 0.9 && y > 0 && imageY >= 0) {
+      imageRef.current?.translateY(-0.1);
+      textRef.current?.translateY(-0.1);
     }
-    return null;
+
+    if (y <= 0 && y > -0.9 && textY <= 26) {
+      imageRef.current?.translateY(0.1);
+      textRef.current?.translateY(0.1);
+    }
   });
 
   return (
     <>
-      <OrbitControls />
       <Plane ref={imageRef} args={[5, 5]} onClick={() => setClicked(!clicked)}>
         <meshBasicMaterial attach="material" map={texture} />
       </Plane>
       <Text
-        maxWidth={20}
-        fontSize={0.9}
+        maxWidth={10}
+        fontSize={0.5}
         anchorY="top"
         position={[0, -5, 0]}
         ref={textRef}
