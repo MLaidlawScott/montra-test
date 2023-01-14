@@ -1,14 +1,7 @@
-export type Author = {
-  id: string;
-  name: string;
-  description: string;
-};
-
-export type Book = {
+export type BookCartItem = {
   isbn: string;
   title: string;
-  author: string;
-  price: string;
-  thumbnailUrl: string;
-  productDescription: string;
+  price: number;
+  thumbnailUri: string;
+  description: string;
 };

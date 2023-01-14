@@ -4,8 +4,6 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-const mockProducts = ["1", "2", "3"];
-
 export default function Products() {
   const [books, setBooks] = useState<BooksResponse["data"]>();
   const [loading, setLoading] = useState(true);
