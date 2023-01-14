@@ -1,6 +1,8 @@
 import Layout from "../components/Layout";
 import { BooksResponse, client } from "../api/supabase";
 import { useEffect, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
 
 const mockProducts = ["1", "2", "3"];
 
@@ -23,10 +25,20 @@ export default function Products() {
       {loading ? (
         <>Loading...</>
       ) : (
-        <div className="flex flex-row">
+        <div className="flex gap-8 flex-wrap justify-center m-8">
           {books?.map((book) => {
-            console.log("book", book);
-            return <div key={book.isbn}>{book.title}</div>;
+            return (
+              <Link href={`/item/${book.isbn}`}>
+                <Image
+                  key={book.isbn}
+                  width={200}
+                  height={200}
+                  alt="book thumbnail"
+                  crossOrigin="anonymous"
+                  src={book.thumbnail_uri}
+                />
+              </Link>
+            );
           })}
         </div>
       )}

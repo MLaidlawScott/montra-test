@@ -29,10 +29,22 @@ const getBooks = async () => {
   return res;
 };
 
+const getBookByIsbn = async (isbn: string) => {
+  const res = await supabase
+    .from("Book")
+    .select(`isbn, title, price, thumbnail_uri, description, Author (name)`)
+    .eq("isbn", isbn);
+  if (res.error) {
+    console.error("something went wrong");
+  }
+  return res;
+};
+
 export type AuthorResponse = Awaited<ReturnType<typeof getAuthor>>;
 export type BooksResponse = Awaited<ReturnType<typeof getBooks>>;
+export type BooksByIsbnResponse = Awaited<ReturnType<typeof getBookByIsbn>>;
 
 export const client = {
-  book: { getBooks },
+  book: { getBooks, getBookByIsbn },
   author: { getAuthor },
 };
